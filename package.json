@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Alexandra-Hionis/My-Employee#readme",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "inquirer": "^7.3.3",
     "mysql": "^2.18.1"
   }
