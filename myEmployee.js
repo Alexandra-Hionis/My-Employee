@@ -29,12 +29,12 @@ var connection = mysql.createConnection({
     database: "myEmployee_DB"
   });
 
-// // connect to the mysql server and sql database
-// connection.connect(function(err) {
-//     if (err) throw err;
-//     // run the start function after the connection is made to prompt the user
-//     start();
-//   });
+// connect to the mysql server and sql database
+connection.connect(function(err) {
+    if (err) throw err;
+    // run the start function after the connection is made to prompt the user
+    start();
+  });
 
 // // function which prompts the user for what action they should take
 // function start() {
