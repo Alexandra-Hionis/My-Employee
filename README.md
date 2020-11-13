@@ -1,7 +1,7 @@
 # My-Employee
 
 ## Description
-My-Employee is an employee tracker. It's a solution for managing a company's employees using node, inquirer, and MySQL. After running to code in the terminal, npm start, a user will be able to add departments, roles, and employees. View departments, roles, and employees, as well as update employee roles. 
+My-Employee is an employee management system. It's a solution for managing a company's employees using node, inquirer, and MySQL. After running to code in the terminal, npm start, a user will be able to add departments, roles, and employees. View departments, roles, and employees, as well as update employee roles. 
 
 Update employee managers, View employees by manager, Delete departments, roles, and employees, View the total utilized budget of a department -- ie the combined salaries of all employees in that department
 

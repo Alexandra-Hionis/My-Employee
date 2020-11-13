@@ -1,0 +1,23 @@
+{
+  "name": "my-employee-tracker",
+  "version": "1.0.0",
+  "description": "an employee management system",
+  "main": "myEmployee.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alexandra-Hionis/My-Employee.git"
+  },
+  "author": "Alexandra Hionis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alexandra-Hionis/My-Employee/issues"
+  },
+  "homepage": "https://github.com/Alexandra-Hionis/My-Employee#readme",
+  "dependencies": {
+    "inquirer": "^7.3.3",
+    "mysql": "^2.18.1"
+  }
+}
