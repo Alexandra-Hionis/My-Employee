@@ -20,11 +20,12 @@ var connection = mysql.createConnection({
 });
 
 // connect to the mysql server and sql database
-connection.connect(function(err) {
-    if (err) throw err;
-    // run the start function after the connection is made to prompt the user
-    start();
-  });
+connection.connect(function (err) {
+  if (err) throw err;
+  // run the start function after the connection is made to prompt the user
+  // start();
+  console.log("Connected");
+});
 
 // // function which prompts the user for what action they should take
 // function start() {
