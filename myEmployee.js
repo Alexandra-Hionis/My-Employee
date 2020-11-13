@@ -4,6 +4,10 @@ var inquirer = require("inquirer");
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
+
+// Reference my password. process.env references the .env file and the .PASSWORD references the password variable thats defined in that file
+process.env.PASSWORD
+
 // ALLS YOUR DOTENV FILE .ENV
 require('dotenv').config();               
 app.get('/', (req, res) => {
@@ -25,7 +29,7 @@ var connection = mysql.createConnection({
     user: "root",
   
     // Your password
-    password: "",
+    
     database: "myEmployee_DB"
   });
 
