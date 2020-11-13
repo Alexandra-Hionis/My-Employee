@@ -1,37 +1,23 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
-
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
 
-// Reference my password. process.env references the .env file and the .PASSWORD references the password variable thats defined in that file
-process.env.PASSWORD
-
-// ALLS YOUR DOTENV FILE .ENV
-require('dotenv').config();               
-app.get('/', (req, res) => {
-    // THE PASSWORD VARIABLE YOU SET
-    res.send(process.env.PASSWORD);       
-})
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}.`)
-})
 
 // create the connection information for the sql database
 var connection = mysql.createConnection({
-    host: "localhost",
-  
-    // Your port; if not 3306
-    port: 3306,
-  
-    // Your username
-    user: "root",
-  
-    // Your password
-    
-    database: "myEmployee_DB"
-  });
+  host: "localhost",
+
+  // Your port; if not 3306
+  port: 3306,
+
+  // Your username
+  user: "root",
+
+  // Your password
+  password: "Loukianosbrother10!",
+  database: "myEmployee_DB"
+});
 
 // connect to the mysql server and sql database
 connection.connect(function(err) {
