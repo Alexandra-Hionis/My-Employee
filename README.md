@@ -14,7 +14,7 @@ Update employee managers, View employees by manager, Delete departments, roles, 
 - [Tests](#tests)
 - [Questions](#questions)
 ## Installation
-Package.json, so make sure to npm install as well as inquirer package. 
+Package.json, will be installed along with MySQL, Inquirer and console.table
 ## Usage
 As a business owner
 I want to be able to view and manage the departments, roles, and employees in my company
