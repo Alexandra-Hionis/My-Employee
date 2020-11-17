@@ -6,19 +6,19 @@ USE myEmployee_DB;
 
 --  Department
 CREATE TABLE departments(
-id INT PRIMARY KEY,
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 department_name VARCHAR(30) -- to hold department name
 );
 -- Role
 CREATE TABLE roles(
-id INT PRIMARY KEY,
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 title VARCHAR(30), -- to hold role title
 salary DECIMAL(6,2), -- to hold role salary
 department_id INT -- to hold reference to department role belongs to
 );
 -- Employee
 CREATE TABLE employees(
-id INT PRIMARY KEY,
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 first_name VARCHAR(30), -- to hold employee first name
 last_name VARCHAR(30), -- to hold employee last name
 role_id INT, -- to hold reference to role employee has
@@ -37,4 +37,5 @@ VALUES ('Mark', 'McGillan', 4, 10), ('Ashley', 'Carrol', 6, 12), ('Sydney', 'Rog
 
 SELECT * FROM employees
 
-Error Code: 1366. Incorrect integer value: '' for column 'id' at row 1
+
+
