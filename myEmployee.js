@@ -90,10 +90,10 @@ function start() {
         message: "What is the name of the department?",
         name: "deptName"
     }).then(function(answer){
-        connection.query("INSERT INTO departments (name) VALUES (?)", [answer.deptName] , function(err, res) {
+        connection.query("INSERT INTO departments (department_name) VALUES (?)", [answer.deptName] , function(err, res) {
             if (err) throw err;
             console.table(res)
-            startScreen()
+            start();
     })
     })
 }
@@ -120,7 +120,7 @@ function addRole() {
       connection.query("INSERT INTO roles (title, salary, department_id) VALUES (?, ?, ?)", [answer.roleName, answer.salaryTotal, answer.deptID], function(err, res) {
         if (err) throw err;
         console.table(res);
-        startScreen();
+        start();
       });
     });
 }
@@ -153,7 +153,7 @@ function addEmployee() {
       connection.query("INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [answer.eeFirstName, answer.eeLastName, answer.roleID, answer.managerID], function(err, res) {
         if (err) throw err;
         console.table(res);
-        startScreen();
+        start();
       });
     });
 }
@@ -176,7 +176,7 @@ function updateEmployee() {
       connection.query('UPDATE employees SET role_id=? WHERE first_name= ?',[answer.updateRole, answer.eeUpdate],function(err, res) {
         if (err) throw err;
         console.table(res);
-        startScreen();
+        start();
       });
     });
 }
@@ -186,7 +186,7 @@ function viewDepartment() {
   connection.query(query, function(err, res) {
     if (err) throw err;
     console.table(res);
-    startScreen();
+    start();
   });
   // show the result to the user (console.table)
 }
@@ -196,7 +196,7 @@ function viewRoles() {
   connection.query(query, function(err, res) {
     if (err) throw err;
     console.table(res);
-    startScreen();
+    start();
   });
   // show the result to the user (console.table)
 }
@@ -206,7 +206,7 @@ function viewEmployees() {
   connection.query(query, function(err, res) {
     if (err) throw err;
     console.table(res);
-    startScreen();
+    start();
   });
   // show the result to the user (console.table)
 }
