@@ -52,9 +52,9 @@ function start() {
   ])
        // Using the switch statement together with prompt() to execute a block of code based on user input
       .then(function(answer) {
-        console.log("You entered: " + result.option);
+        console.log("You entered: " + answer.option);
         // Use switch statement to perform different actions based on different conditions
-        switch (result.option) {
+        switch (answer.option) {
         case "Add a Department":
           addDepartment();
           break;
@@ -90,7 +90,7 @@ function start() {
         message: "What is the name of the department?",
         name: "deptName"
     }).then(function(answer){
-        connection.query("INSERT INTO department (name) VALUES (?)", [answer.deptName] , function(err, res) {
+        connection.query("INSERT INTO departments (name) VALUES (?)", [answer.deptName] , function(err, res) {
             if (err) throw err;
             console.table(res)
             startScreen()
@@ -117,7 +117,7 @@ function addRole() {
       }
     ])
     .then(function(answer) {
-      connection.query("INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)", [answer.roleName, answer.salaryTotal, answer.deptID], function(err, res) {
+      connection.query("INSERT INTO roles (title, salary, department_id) VALUES (?, ?, ?)", [answer.roleName, answer.salaryTotal, answer.deptID], function(err, res) {
         if (err) throw err;
         console.table(res);
         startScreen();
@@ -150,7 +150,7 @@ function addEmployee() {
     ])
     .then(function(answer) {
       
-      connection.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [answer.eeFirstName, answer.eeLastName, answer.roleID, answer.managerID], function(err, res) {
+      connection.query("INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [answer.eeFirstName, answer.eeLastName, answer.roleID, answer.managerID], function(err, res) {
         if (err) throw err;
         console.table(res);
         startScreen();
@@ -173,10 +173,7 @@ function updateEmployee() {
       }
     ])
     .then(function(answer) {
-      // let query = `INSERT INTO department (name) VALUES ("${answer.deptName}")`
-      //let query = `'UPDATE employee SET role_id=${answer.updateRole} WHERE first_name= ${answer.eeUpdate}`;
-      //console.log(query);
-      connection.query('UPDATE employee SET role_id=? WHERE first_name= ?',[answer.updateRole, answer.eeUpdate],function(err, res) {
+      connection.query('UPDATE employees SET role_id=? WHERE first_name= ?',[answer.updateRole, answer.eeUpdate],function(err, res) {
         if (err) throw err;
         console.table(res);
         startScreen();
@@ -185,7 +182,7 @@ function updateEmployee() {
 }
 function viewDepartment() {
   // select from the db
-  let query = "SELECT * FROM department";
+  let query = "SELECT * FROM departments";
   connection.query(query, function(err, res) {
     if (err) throw err;
     console.table(res);
@@ -195,7 +192,7 @@ function viewDepartment() {
 }
 function viewRoles() {
   // select from the db
-  let query = "SELECT * FROM role";
+  let query = "SELECT * FROM roles";
   connection.query(query, function(err, res) {
     if (err) throw err;
     console.table(res);
@@ -205,7 +202,7 @@ function viewRoles() {
 }
 function viewEmployees() {
   // select from the db
-  let query = "SELECT * FROM employee";
+  let query = "SELECT * FROM employees";
   connection.query(query, function(err, res) {
     if (err) throw err;
     console.table(res);
