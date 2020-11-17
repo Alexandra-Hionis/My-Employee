@@ -27,29 +27,56 @@ connection.connect(function (err) {
   console.log("Connected");
 });
 
-// // function which prompts the user for what action they should take
-// function start() {
-//     inquirer
-//   .prompt([
-//     {
-//         type: "input",
-//         message: "Find songs by artist",
-//     },
-//     {
-//         type: "input",
-//         message: "Search for a specific song",
-//     },
+// function which prompts the user for what action they should take
+function start() {
+    inquirer
+  .prompt([
+    {
+        name: "option",
+        type: "list",
+        message: "Select an option using the arrow keys",
+        choices: [
+          "Add a Department",
+          "Add a Role",
+          "Add an Employee",
+          "View Departments",
+          "View Roles",
+          "View Employees",
+          "Update Employee Roles",
+          "Cancel"
+        ]
+    },
+  ])
+       // Using the switch statement together with prompt() to execute a block of code based on user input
+      .then(function(answer) {
+        console.log("You entered: " + result.option);
+        // Use switch statement to perform different actions based on different conditions
+        switch (result.option) {
+        case "Add a Department":
+          addDepartment();
+          break;
+        case "Add role":
+          addRole();
+          break;
+        case "Add employee":
+          addEmployee();
+          break;
+        case "View departments":
+          viewDepartment();
+          break;
+        case "View roles":
+          viewRoles();
+          break;
+        case "View employees":
+          viewEmployees();
+          break;
+        case "Update employee role":
+          updateEmployee();
+          break;
+        default:
+          quit();
+        }
+      });
+  }
 
-//   ])
-//       .then(function(answer) {
-        
-//         if (answer.postOrBid === "POST") {
-//           postAuction();
-//         }
-//         else if(answer.postOrBid === "BID") {
-//           bidAuction();
-//         } else{
-//           connection.end();
-//         }
-//       });
-//   }
+  
