@@ -46,7 +46,7 @@ function start() {
           "View Roles",
           "View Employees",
           "Update Employee Role",
-          "Delete a Department",
+          "Delete an Department",
           "Cancel"
         ]
     },
@@ -77,7 +77,7 @@ function start() {
         case "Update Employee Role":
           updateEmployee();
           break;
-        case "Delete a Department":
+        case "Delete an Department":
           deleteDepartment();
           break;
         default:
@@ -223,7 +223,7 @@ function deleteDepartment() {
     message: "What is the name of the department you want to delete?",
     name: "deptName"
   }).then(function(answer){
-      connection.query("INSERT INTO departments (department_name) VALUES (?)", [answer.deptName],
+      connection.query("DELETE FROM departments (department_name) VALUES (?)", [answer.deptName],
       function(err, res) {
         if (err) throw err;
         console.log(res.affectedRows + " department deleted!\n");
