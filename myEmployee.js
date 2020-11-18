@@ -46,6 +46,7 @@ function start() {
           "View Roles",
           "View Employees",
           "Update Employee Role",
+          "Delete a Department",
           "Cancel"
         ]
     },
@@ -75,6 +76,9 @@ function start() {
           break;
         case "Update Employee Role":
           updateEmployee();
+          break;
+        case "Delete a Department":
+          deleteDepartment();
           break;
         default:
           quit();
@@ -157,29 +161,6 @@ function addEmployee() {
       });
     });
 }
-//Since we're using inquirer, we can pass the query into the method as an array
-function updateEmployee() {
-  inquirer
-    .prompt([
-      {
-        type: "input",
-        message: "Which employee would you like to update?",
-        name: "eeUpdate"
-      },
-      {
-        type: "input",
-        message: "What do you want to update to?",
-        name: "updateRole"
-      }
-    ])
-    .then(function(answer) {
-      connection.query('UPDATE employees SET role_id=? WHERE first_name= ?',[answer.updateRole, answer.eeUpdate],function(err, res) {
-        if (err) throw err;
-        console.table(res);
-        start();
-      });
-    });
-}
 function viewDepartment() {
   // select from the db
   let query = "SELECT * FROM departments";
@@ -210,6 +191,51 @@ function viewEmployees() {
   });
   // show the result to the user (console.table)
 }
+//Since we're using inquirer, we can pass the query into the method as an array
+function updateEmployee() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "Which employee would you like to update?",
+        name: "eeUpdate"
+      },
+      {
+        type: "input",
+        message: "What do you want to update to?",
+        name: "updateRole"
+      }
+    ])
+    .then(function(answer) {
+      connection.query('UPDATE employees SET role_id=? WHERE first_name= ?',[answer.updateRole, answer.eeUpdate],function(err, res) {
+        if (err) throw err;
+        console.table(res);
+        start();
+      });
+    });
+}
+
+function deleteDepartment() {
+
+  inquirer.prompt ({
+
+    type: "input",
+    message: "What is the name of the department you want to delete?",
+    name: "deptName"
+  }).then(function(answer){
+      connection.query("INSERT INTO departments (department_name) VALUES (?)", [answer.deptName],
+      function(err, res) {
+        if (err) throw err;
+        console.log(res.affectedRows + " department deleted!\n");
+        // Call start AFTER the DELETE completes
+        start();
+      }
+    );
+
+  });
+}
+
+
 function quit() {
   connection.end();
   process.exit();
