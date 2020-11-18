@@ -231,7 +231,7 @@ function deleteDepartment() {
     connection.query(
       "DELETE FROM departments WHERE ?",
       {
-        department_name: "Hannah"
+        department_name: "Accounting"
       },
       function(err, res) {
         if (err) throw err;
@@ -268,25 +268,28 @@ function deleteEmployee() {
       name: "managerID"
     }).then(function(answer){
     connection.query(
-      "DELETE FROM employees WHERE ?",
+      "DELETE FROM employees WHERE ? AND ? AND ? AND ?",
+      [
       {
-        first_name: "sdf"
+        first_name: "Ted"
       },
-      {
-        last_name: "sdf"
+      { 
+        last_name: "Bundy"
       },
-      {
-        role_id: "4"
+      {  
+        role_id: "17"
       },
-      {
-        manager_id: "3"
-      },
+      { 
+         manager_id: "4"
+      }
+    ],
       function(err, res) {
         if (err) throw err;
         console.log(res.affectedRows + " employee deleted!\n");
         // Call start AFTER the DELETE completes
         start();
       }
+    
     );
 
   });
