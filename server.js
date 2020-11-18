@@ -226,13 +226,12 @@ function deleteDepartment() {
 
     type: "input",
     message: "What is the name of the department you want to delete?",
-    name: "deptName"
+    name: "deleteDep"
   }).then(function(answer){
-    connection.query(
-      "DELETE FROM departments WHERE ?",
-      {
-        department_name: "Accounting"
-      },
+    connection.query("DELETE FROM departments WHERE department_name= ?",[answer.deleteDep],
+      // {
+      //   department_name: "Accounting"
+      // },
       function(err, res) {
         if (err) throw err;
         console.log(res.affectedRows + " department deleted!\n");
