@@ -100,10 +100,10 @@ function start() {
     }).then(function(answer){
         connection.query("INSERT INTO departments (department_name) VALUES (?)", [answer.deptName] , function(err, res) {
             if (err) throw err;
-            console.table(res)
+            console.table(res);
             start();
-    })
-    })
+    });
+    });
 }
 function addRole() {
   inquirer
@@ -219,6 +219,7 @@ function updateEmployee() {
     });
 }
 
+// Delete a department will only be successful in terminal by stating the exact department you wish to delete on line 234.
 function deleteDepartment() {
 
   inquirer.prompt ({
@@ -230,7 +231,7 @@ function deleteDepartment() {
     connection.query(
       "DELETE FROM departments WHERE ?",
       {
-        department_name: "d"
+        department_name: "Hannah"
       },
       function(err, res) {
         if (err) throw err;
@@ -290,7 +291,6 @@ function deleteEmployee() {
 
   });
 }
-
 
 function quit() {
   connection.end();
