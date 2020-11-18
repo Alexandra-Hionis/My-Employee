@@ -46,7 +46,8 @@ function start() {
           "View Roles",
           "View Employees",
           "Update Employee Role",
-          "Delete an Department",
+          "Delete a Department",
+          "Delete an Employee",
           "Cancel"
         ]
     },
@@ -77,8 +78,11 @@ function start() {
         case "Update Employee Role":
           updateEmployee();
           break;
-        case "Delete an Department":
+        case "Delete a Department":
           deleteDepartment();
+          break;
+        case "Delete an Employee":
+          deleteEmployee();
           break;
         default:
           quit();
@@ -223,10 +227,62 @@ function deleteDepartment() {
     message: "What is the name of the department you want to delete?",
     name: "deptName"
   }).then(function(answer){
-      connection.query("DELETE FROM departments (department_name) VALUES (?)", [answer.deptName],
+    connection.query(
+      "DELETE FROM departments WHERE ?",
+      {
+        department_name: "d"
+      },
       function(err, res) {
         if (err) throw err;
         console.log(res.affectedRows + " department deleted!\n");
+        // Call start AFTER the DELETE completes
+        start();
+      }
+    );
+
+  });
+}
+
+function deleteEmployee() {
+
+  inquirer.prompt (
+    {
+      type: "input",
+      message: "What's the first name of the employee you want to delete?",
+      name: "eeFirstName"
+    },
+    {
+      type: "input",
+      message: "What's the last name of the employee you want to delete?",
+      name: "eeLastName"
+    },
+    {
+      type: "input",
+      message: "What is the employee's role id number that you want to delete?",
+      name: "roleID"
+    },
+    {
+      type: "input",
+      message: "What is the manager id number that you want to delete?",
+      name: "managerID"
+    }).then(function(answer){
+    connection.query(
+      "DELETE FROM employees WHERE ?",
+      {
+        first_name: "sdf"
+      },
+      {
+        last_name: "sdf"
+      },
+      {
+        role_id: "4"
+      },
+      {
+        manager_id: "3"
+      },
+      function(err, res) {
+        if (err) throw err;
+        console.log(res.affectedRows + " employee deleted!\n");
         // Call start AFTER the DELETE completes
         start();
       }
