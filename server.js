@@ -48,6 +48,7 @@ function start() {
           "Update Employee Role",
           "Delete a Department",
           "Delete an Employee",
+          "Delete a Role",
           "Cancel"
         ]
     },
@@ -83,6 +84,9 @@ function start() {
           break;
         case "Delete an Employee":
           deleteEmployee();
+          break;
+        case "Delete a Role":
+          deleteRole();
           break;
         default:
           quit();
@@ -271,6 +275,39 @@ function deleteEmployee() {
       "DELETE FROM employees WHERE first_name= ? AND last_name= ? AND role_id= ? AND manager_id= ?",[answer.delFirstName, answer.delLastName, answer.delRoleID, answer.delManagerID],function(err, res) {
         if (err) throw err;
         console.log(res.affectedRows + " employee deleted!\n");
+        // Call start AFTER the DELETE completes
+        start();
+      }
+    
+    );
+
+  });
+}
+
+function deleteRole() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What's the name of the role you want to delete?",
+        name: "delRoleName"
+      },
+      {
+        type: "input",
+        message: "What is the salary for the role you want to delete?",
+        name: "delSalaryTotal"
+      },
+      {
+        type: "input",
+        message: "What is the department id number for the role you want to delete?",
+        name: "delDeptID"
+      }
+    ])
+    .then(function(answer){
+    connection.query(
+      "DELETE FROM roles WHERE title= ? AND salary= ? AND department_id= ?",[answer.delRoleName, answer.delSalaryTotal, answer.delDeptID],function(err, res) {
+        if (err) throw err;
+        console.log(res.affectedRows + " role deleted!\n");
         // Call start AFTER the DELETE completes
         start();
       }
