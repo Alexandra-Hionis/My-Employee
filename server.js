@@ -228,11 +228,7 @@ function deleteDepartment() {
     message: "What is the name of the department you want to delete?",
     name: "deleteDep"
   }).then(function(answer){
-    connection.query("DELETE FROM departments WHERE department_name= ?",[answer.deleteDep],
-      // {
-      //   department_name: "Accounting"
-      // },
-      function(err, res) {
+    connection.query("DELETE FROM departments WHERE department_name= ?",[answer.deleteDep],function(err, res) {
         if (err) throw err;
         console.log(res.affectedRows + " department deleted!\n");
         // Call start AFTER the DELETE completes
@@ -249,40 +245,25 @@ function deleteEmployee() {
     {
       type: "input",
       message: "What's the first name of the employee you want to delete?",
-      name: "eeFirstName"
+      name: "delFirstName"
     },
     {
       type: "input",
       message: "What's the last name of the employee you want to delete?",
-      name: "eeLastName"
+      name: "delLastName"
     },
     {
       type: "input",
       message: "What is the employee's role id number that you want to delete?",
-      name: "roleID"
+      name: "delRoleID"
     },
     {
       type: "input",
       message: "What is the manager id number that you want to delete?",
-      name: "managerID"
+      name: "delManagerID"
     }).then(function(answer){
     connection.query(
-      "DELETE FROM employees WHERE ? AND ? AND ? AND ?",
-      [
-      {
-        first_name: "Ted"
-      },
-      { 
-        last_name: "Bundy"
-      },
-      {  
-        role_id: "17"
-      },
-      { 
-         manager_id: "4"
-      }
-    ],
-      function(err, res) {
+      "DELETE FROM employees WHERE first_name= ? AND last_name= ? AND role_id= ? AND manager_id= ?", [answer.delFirstName, answer.delLastName, answer.delRoleID, answer.delManagerID],function(err, res) {
         if (err) throw err;
         console.log(res.affectedRows + " employee deleted!\n");
         // Call start AFTER the DELETE completes
