@@ -76,7 +76,7 @@ function start() {
           viewEmployees();
           break;
         case "Update Employee Role":
-          updateEmployee();
+          updateEmployeeRole();
           break;
         case "Delete a Department":
           deleteDepartment();
@@ -196,22 +196,27 @@ function viewEmployees() {
   // show the result to the user (console.table)
 }
 //Since we're using inquirer, we can pass the query into the method as an array
-function updateEmployee() {
+function updateEmployeeRole() {
   inquirer
     .prompt([
       {
         type: "input",
-        message: "Which employee would you like to update?",
-        name: "eeUpdate"
+        message: "What is the first name of the employee you want to update?",
+        name: "employeeFNUpdate"
       },
       {
         type: "input",
-        message: "What do you want to update to?",
+        message: "What is the last name of the employee you want to update?",
+        name: "employeeLNUpdate"
+      },
+      {
+        type: "input",
+        message: "What number do you want their role id to be changed to?",
         name: "updateRole"
       }
     ])
     .then(function(answer) {
-      connection.query('UPDATE employees SET role_id=? WHERE first_name= ?',[answer.updateRole, answer.eeUpdate],function(err, res) {
+      connection.query('UPDATE employees SET role_id= ? WHERE first_name= ? AND last_name= ?',[answer.updateRole, answer.employeeFNUpdate, answer.employeeLNUpdate],function(err, res) {
         if (err) throw err;
         console.table(res);
         start();
@@ -219,7 +224,6 @@ function updateEmployee() {
     });
 }
 
-// Delete a department will only be successful in terminal by stating the exact department you wish to delete on line 234.
 function deleteDepartment() {
 
   inquirer.prompt ({

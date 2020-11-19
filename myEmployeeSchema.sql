@@ -30,10 +30,10 @@ INSERT INTO departments (department_name)
 VALUES ('Marketing'), ('Sales'), ('Finance'), ('Human Resources'), ('Operations');
 
 INSERT INTO roles (title, salary, department_id)
-VALUES ('Marketing Analyst', 55000, 3), ('Sales Manager', 100000, 1), ('Chief Financial Officer', 135600, 2), ('Human Resources Assistant', 35000, 5), ('Operations Assistant', 30000, 4);
+VALUES ('Marketing Analyst', 55000, 1), ('Sales Manager', 100000, 2), ('Chief Financial Officer', 135600, 3), ('Human Resources Assistant', 35000, 4), ('Operations Assistant', 30000, 5);
 
 INSERT INTO employees (first_name, last_name, role_id, manager_id)
-VALUES ('Mark', 'McGillan', 4, 10), ('Ashley', 'Carrol', 6, 12), ('Sydney', 'Rogers', 2, 8), ('Julia', 'Pete', 8, 14), ('Tom', 'Swayze', 10, 16);
+VALUES ('Mark', 'McGillan', 6, 11), ('Ashley', 'Carrol', 7, 12), ('Sydney', 'Rogers', 8, 13), ('Julia', 'Pete', 9, 14), ('Tom', 'Swayze', 10, 15);
 
 SELECT * FROM departments
 SELECT * FROM roles
