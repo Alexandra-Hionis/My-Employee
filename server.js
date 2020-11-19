@@ -241,7 +241,7 @@ function deleteDepartment() {
 
 function deleteEmployee() {
 
-  inquirer.prompt (
+  inquirer.prompt ([
     {
       type: "input",
       message: "What's the first name of the employee you want to delete?",
@@ -261,9 +261,10 @@ function deleteEmployee() {
       type: "input",
       message: "What is the manager id number that you want to delete?",
       name: "delManagerID"
-    }).then(function(answer){
+    }
+  ]).then(function(answer){
     connection.query(
-      "DELETE FROM employees WHERE first_name= ? AND last_name= ? AND role_id= ? AND manager_id= ?", [answer.delFirstName, answer.delLastName, answer.delRoleID, answer.delManagerID],function(err, res) {
+      "DELETE FROM employees WHERE first_name= ? AND last_name= ? AND role_id= ? AND manager_id= ?",[answer.delFirstName, answer.delLastName, answer.delRoleID, answer.delManagerID],function(err, res) {
         if (err) throw err;
         console.log(res.affectedRows + " employee deleted!\n");
         // Call start AFTER the DELETE completes
